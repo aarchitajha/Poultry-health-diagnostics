@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lime: #84cc16;
+  --color-slate-950: #0f172a;
+  --color-slate-600: #475569;
+  --color-slate-200: #e2e8f0;
+  --color-slate-100: #f1f5f9;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+@layer base {
+  body {
+    @apply m-0 min-h-screen antialiased text-slate-950;
+    font-family: Inter, Roboto, system-ui, sans-serif;
+    background-color: #f8fafc;
+  }
+}
+
+@layer utilities {
+  @keyframes levitate {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-levitate {
+    animation: levitate 6s ease-in-out infinite;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .star-field {
+    background: radial-gradient(circle at center, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+}

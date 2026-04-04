@@ -1,0 +1,138 @@
+PS D:\Poultry health diagnostics> python 02_train.py
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775316628.830525   15676 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical resultsdue to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775316665.754549   15676 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical resultsdue to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Loading datasets...
+Found 1255 files belonging to 4 classes.
+Using 1004 files for training.
+I0000 00:00:1775316667.055251   15676 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Found 1255 files belonging to 4 classes.
+Using 251 files for validation.
+Classes found: ['pcrcocci', 'pcrhealthy', 'pcrncd', 'pcrsalmo']
+Building EfficientNetB0 Model...
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+Phase 1: Training top layers for 25 epochs...
+Epoch 1/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 103s 2s/step - accuracy: 0.6663 - loss: 1.0396 - val_accuracy: 0.8130 - val_loss: 0.8170 - learning_rate:0.0010
+Epoch 2/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 49s 1s/step - accuracy: 0.7988 - loss: 0.8119 - val_accuracy: 0.8618 - val_loss: 0.7869 - learning_rate: 0.0010
+Epoch 3/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 42s 1s/step - accuracy: 0.8177 - loss: 0.7330 - val_accuracy: 0.8780 - val_loss: 0.7333 - learning_rate: 0.0010
+Epoch 4/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 37s 1s/step - accuracy: 0.8317 - loss: 0.7110 - val_accuracy: 0.8618 - val_loss: 0.7079 - learning_rate: 0.0010
+Epoch 5/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 44s 1s/step - accuracy: 0.8456 - loss: 0.6950 - val_accuracy: 0.8862 - val_loss: 0.6489 - learning_rate: 0.0010
+Epoch 6/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 42s 1s/step - accuracy: 0.8645 - loss: 0.6478 - val_accuracy: 0.8618 - val_loss: 0.6699 - learning_rate: 0.0010
+Epoch 7/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 40s 1s/step - accuracy: 0.8466 - loss: 0.6696 - val_accuracy: 0.8211 - val_loss: 0.7106 - learning_rate: 0.0010
+Epoch 8/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 40s 1s/step - accuracy: 0.8556 - loss: 0.6539 - val_accuracy: 0.8699 - val_loss: 0.6539 - learning_rate: 0.0010
+Epoch 9/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 39s 1s/step - accuracy: 0.8695 - loss: 0.6390 - val_accuracy: 0.8862 - val_loss: 0.6332 - learning_rate: 0.0010
+Epoch 10/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 41s 1s/step - accuracy: 0.8735 - loss: 0.6226 - val_accuracy: 0.9106 - val_loss: 0.5914 - learning_rate: 5.0000e-04
+Epoch 11/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 38s 1s/step - accuracy: 0.8805 - loss: 0.6128 - val_accuracy: 0.8618 - val_loss: 0.6573 - learning_rate: 5.0000e-04
+Epoch 12/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 38s 1s/step - accuracy: 0.8914 - loss: 0.5942 - val_accuracy: 0.8862 - val_loss: 0.6137 - learning_rate: 5.0000e-04
+Epoch 13/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 39s 1s/step - accuracy: 0.9004 - loss: 0.5869 - val_accuracy: 0.8618 - val_loss: 0.5913 - learning_rate: 5.0000e-04
+Epoch 14/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 60s 2s/step - accuracy: 0.9094 - loss: 0.5644 - val_accuracy: 0.8943 - val_loss: 0.5718 - learning_rate: 5.0000e-04
+Epoch 15/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 107s 2s/step - accuracy: 0.9064 - loss: 0.5834 - val_accuracy: 0.8455 - val_loss: 0.6368 - learning_rate:2.5000e-04
+Epoch 16/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 56s 2s/step - accuracy: 0.9064 - loss: 0.5528 - val_accuracy: 0.8699 - val_loss: 0.6100 - learning_rate: 2.5000e-04
+Epoch 17/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 57s 2s/step - accuracy: 0.9094 - loss: 0.5713 - val_accuracy: 0.9024 - val_loss: 0.5504 - learning_rate: 2.5000e-04
+Epoch 18/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 59s 2s/step - accuracy: 0.9004 - loss: 0.5691 - val_accuracy: 0.8537 - val_loss: 0.6282 - learning_rate: 2.5000e-04
+Epoch 19/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 62s 2s/step - accuracy: 0.9153 - loss: 0.5413 - val_accuracy: 0.8374 - val_loss: 0.6285 - learning_rate: 1.2500e-04
+Epoch 20/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 111s 3s/step - accuracy: 0.9193 - loss: 0.5661 - val_accuracy: 0.8455 - val_loss: 0.6726 - learning_rate:1.2500e-04
+Epoch 21/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 100s 3s/step - accuracy: 0.9193 - loss: 0.5499 - val_accuracy: 0.8618 - val_loss: 0.6171 - learning_rate:1.2500e-04
+Epoch 22/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 82s 2s/step - accuracy: 0.9064 - loss: 0.5648 - val_accuracy: 0.8862 - val_loss: 0.6114 - learning_rate: 1.2500e-04
+Epoch 23/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 96s 3s/step - accuracy: 0.9034 - loss: 0.5701 - val_accuracy: 0.8618 - val_loss: 0.6464 - learning_rate: 6.2500e-05
+Epoch 24/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 105s 3s/step - accuracy: 0.9203 - loss: 0.5495 - val_accuracy: 0.8374 - val_loss: 0.6578 - learning_rate:6.2500e-05
+Epoch 25/25
+32/32 ━━━━━━━━━━━━━━━━━━━━ 104s 3s/step - accuracy: 0.9203 - loss: 0.5476 - val_accuracy: 0.8537 - val_loss: 0.5982 - learning_rate:6.2500e-05
+Phase 2: Fine-tuning started (Stabilizing weights)...
+Epoch 1/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 467s 8s/step - accuracy: 0.9153 - loss: 0.4330 - val_accuracy: 0.8699 - val_loss: 0.5101 - learning_rate:1.0000e-05
+Epoch 2/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 271s 8s/step - accuracy: 0.9273 - loss: 0.4061 - val_accuracy: 0.9187 - val_loss: 0.4474 - learning_rate:1.0000e-05
+Epoch 3/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 261s 8s/step - accuracy: 0.9263 - loss: 0.4056 - val_accuracy: 0.8862 - val_loss: 0.4551 - learning_rate:1.0000e-05
+Epoch 4/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 257s 8s/step - accuracy: 0.9133 - loss: 0.4070 - val_accuracy: 0.8699 - val_loss: 0.4762 - learning_rate:1.0000e-05
+Epoch 5/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 116s 3s/step - accuracy: 0.9303 - loss: 0.3834 - val_accuracy: 0.8780 - val_loss: 0.4884 - learning_rate:1.0000e-05
+Epoch 6/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 78s 2s/step - accuracy: 0.9293 - loss: 0.3799 - val_accuracy: 0.8862 - val_loss: 0.4935 - learning_rate: 1.0000e-05
+Epoch 7/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 209s 7s/step - accuracy: 0.9323 - loss: 0.3819 - val_accuracy: 0.8862 - val_loss: 0.4513 - learning_rate:1.0000e-05
+Epoch 8/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 245s 6s/step - accuracy: 0.9263 - loss: 0.3991 - val_accuracy: 0.8943 - val_loss: 0.4623 - learning_rate:5.0000e-06
+Epoch 9/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 181s 6s/step - accuracy: 0.9353 - loss: 0.3727 - val_accuracy: 0.9268 - val_loss: 0.4707 - learning_rate:5.0000e-06
+Epoch 10/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 199s 6s/step - accuracy: 0.9303 - loss: 0.3759 - val_accuracy: 0.9106 - val_loss: 0.4150 - learning_rate:5.0000e-06
+Epoch 11/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 178s 5s/step - accuracy: 0.9373 - loss: 0.3697 - val_accuracy: 0.9187 - val_loss: 0.4596 - learning_rate:5.0000e-06
+Epoch 12/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 195s 6s/step - accuracy: 0.9402 - loss: 0.3692 - val_accuracy: 0.8618 - val_loss: 0.5176 - learning_rate:5.0000e-06
+Epoch 13/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 134s 4s/step - accuracy: 0.9492 - loss: 0.3543 - val_accuracy: 0.9350 - val_loss: 0.3741 - learning_rate:5.0000e-06
+Epoch 14/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 86s 3s/step - accuracy: 0.9452 - loss: 0.3662 - val_accuracy: 0.8943 - val_loss: 0.4431 - learning_rate: 5.0000e-06
+Epoch 15/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 81s 2s/step - accuracy: 0.9343 - loss: 0.3676 - val_accuracy: 0.9187 - val_loss: 0.4414 - learning_rate: 5.0000e-06
+Epoch 16/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 129s 4s/step - accuracy: 0.9293 - loss: 0.3778 - val_accuracy: 0.9187 - val_loss: 0.4160 - learning_rate:5.0000e-06
+Epoch 17/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 86s 3s/step - accuracy: 0.9452 - loss: 0.3677 - val_accuracy: 0.8943 - val_loss: 0.4215 - learning_rate: 5.0000e-06
+Epoch 18/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 136s 4s/step - accuracy: 0.9363 - loss: 0.3735 - val_accuracy: 0.9106 - val_loss: 0.4246 - learning_rate:5.0000e-06
+Epoch 19/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 86s 3s/step - accuracy: 0.9462 - loss: 0.3607 - val_accuracy: 0.8699 - val_loss: 0.4774 - learning_rate: 2.5000e-06
+Epoch 20/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 87s 3s/step - accuracy: 0.9323 - loss: 0.3705 - val_accuracy: 0.9268 - val_loss: 0.4219 - learning_rate: 2.5000e-06
+Epoch 21/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 80s 2s/step - accuracy: 0.9532 - loss: 0.3438 - val_accuracy: 0.8699 - val_loss: 0.5071 - learning_rate: 2.5000e-06
+Epoch 22/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 88s 3s/step - accuracy: 0.9432 - loss: 0.3637 - val_accuracy: 0.9106 - val_loss: 0.4426 - learning_rate: 2.5000e-06
+Epoch 23/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 155s 3s/step - accuracy: 0.9343 - loss: 0.3663 - val_accuracy: 0.8780 - val_loss: 0.5246 - learning_rate:2.5000e-06
+Epoch 24/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 86s 3s/step - accuracy: 0.9482 - loss: 0.3556 - val_accuracy: 0.8943 - val_loss: 0.4213 - learning_rate: 1.2500e-06
+Epoch 25/50
+32/32 ━━━━━━━━━━━━━━━━━━━━ 86s 3s/step - accuracy: 0.9482 - loss: 0.3690 - val_accuracy: 0.8943 - val_loss: 0.4356 - learning_rate: 1.2500e-06
+Generating 9 & 10: Training Curves...
+Generating 11: Learning Rate Schedule...
+Evaluating on Test Set...
+Generating 12: Confusion Matrix...
+Generating 13: ROC Curves...
+Generating 14: Precision-Recall...
+Generating 15: GradCAM Showcase...
+Generating F1 & Dashboard JSON...
+              precision    recall  f1-score   support
+
+    pcrcocci       0.89      0.89      0.89        35
+  pcrhealthy       0.94      0.86      0.90        36
+      pcrncd       0.90      1.00      0.95        19
+    pcrsalmo       0.95      0.97      0.96        38
+
+    accuracy                           0.92       128
+   macro avg       0.92      0.93      0.92       128
+weighted avg       0.92      0.92      0.92       128
+
+Retraining & visualization generation (9-17) completed!
+PS D:\Poultry health diagnostics>
