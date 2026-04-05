@@ -58,18 +58,6 @@ def home():
 def serve_static(filename):
     return send_from_directory(os.path.join(app.root_path, 'static'), filename)
 
-@app.route('/assets/<path:filename>')
-def serve_assets(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static', 'app', 'assets'), filename)
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch_all(path):
-    spa = os.path.join(app.root_path, 'static', 'app', 'index.html')
-    if os.path.isfile(spa):
-        return send_from_directory(os.path.join(app.root_path, 'static', 'app'), 'index.html')
-    return "App not built", 404
-
 
 @app.route('/api/training-log')
 def api_training_log():
