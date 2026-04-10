@@ -173,6 +173,28 @@ plt.tight_layout()
 plt.savefig(os.path.join(OUT_DIR, '09_10_train_curves.png'), dpi=150)
 plt.close()
 
+def plot_10_confusion_matrix():
+    print("Generating 10: Model Confusion Matrix (Validation Set)...")
+    y_true_list = []
+    y_pred_list = []
+    
+    # Run inference on the validation set
+    for x, y in val_ds:
+        preds = model.predict(x, verbose=0)
+        y_true_list.extend(np.argmax(y.numpy(), axis=1))
+        y_pred_list.extend(np.argmax(preds, axis=1))
+    
+    cm = confusion_matrix(y_true_list, y_pred_list)
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+                xticklabels=classes, yticklabels=classes)
+    plt.title("Model Confusion Matrix – Validation Set", fontweight='bold', fontsize=14)
+    plt.xlabel("Predicted Label")
+    plt.ylabel("True Label")
+    plt.tight_layout()
+    plt.savefig(os.path.join(OUT_DIR, '10_confusion_matrix.png'), dpi=150)
+    plt.close()
+
 # 11. Learning Rate Schedule
 print("Generating 11: Learning Rate Schedule...")
 plt.figure(figsize=(8, 5))
@@ -185,6 +207,9 @@ plt.xlabel("Epochs")
 plt.ylabel("LR")
 plt.savefig(os.path.join(OUT_DIR, '11_lr_schedule.png'), dpi=150)
 plt.close()
+
+# Generate the new Confusion Matrix plot
+plot_10_confusion_matrix()
 
 print("Evaluating on Test Set...")
 y_true = []

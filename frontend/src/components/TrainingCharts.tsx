@@ -29,13 +29,13 @@ type Props = {
 export function LossCurveChart({ data, delay = 0, chartKey = "loss" }: Props) {
   return (
     <motion.div
-      className="h-[300px] w-full"
+      className="h-[300px] w-full min-w-0 min-h-0"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
     >
-      <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
+      <ResponsiveContainer width="100%" height={300} minWidth={0} minHeight={0} debounce={50}>
         <LineChart key={chartKey} data={data} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
           <XAxis dataKey="epoch" tick={{ fontSize: 11 }} label={{ value: "Epoch", position: "insideBottom", offset: -4 }} />
@@ -74,13 +74,13 @@ export function LossCurveChart({ data, delay = 0, chartKey = "loss" }: Props) {
 export function AccuracyCurveChart({ data, delay = 0, chartKey = "acc" }: Props) {
   return (
     <motion.div
-      className="h-[300px] w-full"
+      className="h-[300px] w-full min-w-0 min-h-0"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
     >
-      <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
+      <ResponsiveContainer width="100%" height={300} minWidth={0} minHeight={0} debounce={50}>
         <LineChart key={chartKey} data={data} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
           <XAxis dataKey="epoch" tick={{ fontSize: 11 }} label={{ value: "Epoch", position: "insideBottom", offset: -4 }} />
@@ -123,13 +123,13 @@ export function AccuracyCurveChart({ data, delay = 0, chartKey = "acc" }: Props)
 export function LearningRateChart({ data, delay = 0, chartKey = "lr" }: Props) {
   return (
     <motion.div
-      className="h-[300px] w-full"
+      className="h-[300px] w-full min-w-0 min-h-0"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
     >
-      <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
+      <ResponsiveContainer width="100%" height={300} minWidth={0} minHeight={0} debounce={50}>
         <LineChart key={chartKey} data={data} margin={{ top: 8, right: 16, left: 8, bottom: 8 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
           <XAxis dataKey="epoch" tick={{ fontSize: 11 }} label={{ value: "Epoch", position: "insideBottom", offset: -4 }} />

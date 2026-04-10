@@ -199,16 +199,87 @@ def plot_7_data_aug_showcase(df):
     plt.savefig(os.path.join(OUT_DIR, '07_data_aug_showcase.png'))
     plt.close()
 
-def plot_8_corr_heatmap():
-    # Because calculating actual correlations for 4000 images is slow, simulate the feature distributions generally expected.
-    np.random.seed(42)
-    cols = ['Mean R', 'Mean G', 'Mean B', 'Entropy', 'Contrast', 'Edge_Density']
-    corr = pd.DataFrame(np.random.rand(6,6), columns=cols, index=cols).corr()
-    plt.figure(figsize=(7, 6))
-    sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
-    plt.title("8. Feature Correlation Heatmap", fontweight='bold')
+def plot_8_corr_heatmap(df):
+    print("Extracting real image features for correlation heatmap...")
+    # Sample up to 200 images across all classes
+    sample_df = df.sample(n=min(200, len(df)), random_state=42)
+    
+    features = []
+    for _, row in sample_df.iterrows():
+        img = cv2.imread(row['path'])
+        if img is None:
+            continue
+        
+        # Mean R, G, B
+        mean_b, mean_g, mean_r = cv2.mean(img)[:3]
+        
+        # Grayscale for entropy and contrast
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        
+        # Entropy (Shannon)
+        marg = np.histogram(gray, bins=256, range=(0, 256))[0] / gray.size
+        marg = marg[marg > 0]
+        entropy = -np.sum(marg * np.log2(marg))
+        
+        # Laplacian variance (Contrast proxy)
+        contrast = cv2.Laplacian(gray, cv2.CV_64F).var()
+        
+        # Canny edge density
+        edges = cv2.Canny(gray, 100, 200)
+        edge_density = np.sum(edges > 0) / edges.size
+        
+        features.append({
+            'Mean R': mean_r,
+            'Mean G': mean_g,
+            'Mean B': mean_b,
+            'Entropy': entropy,
+            'Contrast': contrast,
+            'Edge_Density': edge_density
+        })
+    
+    feat_df = pd.DataFrame(features)
+    corr = feat_df.corr()
+    
+    plt.figure(figsize=(8, 7))
+    sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1, fmt=".2f")
+    plt.title("Feature Correlation Heatmap (Real Image Features)", fontweight='bold')
     plt.tight_layout()
     plt.savefig(os.path.join(OUT_DIR, '08_corr_heatmap.png'), dpi=150)
+    plt.close()
+
+def plot_9_class_mean_heatmap(df):
+    print("Generating Per-Class Mean Pixel Heatmaps...")
+    fig, axes = plt.subplots(1, 4, figsize=(18, 5))
+    
+    for i, cls in enumerate(CLASSES):
+        cls_paths = df[df['class'] == cls]['path'].values
+        if len(cls_paths) == 0:
+            continue
+        
+        # Sample up to 100 images per class
+        sample_paths = np.random.choice(cls_paths, min(100, len(cls_paths)), replace=False)
+        
+        mean_img = np.zeros((64, 64), dtype=np.float32)
+        count = 0
+        
+        for p in sample_paths:
+            img = cv2.imread(p, cv2.IMREAD_GRAYSCALE)
+            if img is not None:
+                img = cv2.resize(img, (64, 64))
+                mean_img += img.astype(np.float32)
+                count += 1
+        
+        if count > 0:
+            mean_img /= count
+            sns.heatmap(mean_img, cmap='YlOrRd', ax=axes[i], cbar=(i == 3))
+            axes[i].set_title(f"Mean: {cls}", fontweight='bold')
+            axes[i].axis('off')
+        else:
+            axes[i].axis('off')
+
+    plt.suptitle("9. Per-Class Mean Pixel Heatmap (64x64 Grayscale)", fontweight='bold', fontsize=16)
+    plt.tight_layout()
+    plt.savefig(os.path.join(OUT_DIR, '09_class_mean_heatmap.png'), dpi=150)
     plt.close()
 
 if __name__ == "__main__":
@@ -234,6 +305,8 @@ if __name__ == "__main__":
         print("Generating Plot 7...")
         plot_7_data_aug_showcase(df)
         print("Generating Plot 8...")
-        plot_8_corr_heatmap()
+        plot_8_corr_heatmap(df)
+        print("Generating Plot 9...")
+        plot_9_class_mean_heatmap(df)
         
     print("EDA Visualizations complete. Saved to", OUT_DIR)

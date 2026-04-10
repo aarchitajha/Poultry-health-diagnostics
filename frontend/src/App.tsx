@@ -46,14 +46,16 @@ const nav: { id: Section; label: string; icon: ReactNode }[] = [
 ];
 
 const edaPlots = [
-  { n: "1", title: "Class distribution (bar)", desc: "Image counts per class with share annotations.", src: "/static/eda_plots/01_class_dist_bar.png" },
-  { n: "2", title: "Class distribution (pie)", desc: "Class proportions.", src: "/static/eda_plots/02_class_dist_pie.png" },
-  { n: "3", title: "Sample image grid", desc: "Representative tiles per class.", src: "/static/eda_plots/03_sample_image_grid.png" },
-  { n: "4", title: "Pixel intensity distribution", desc: "RGB histograms by class.", src: "/static/eda_plots/04_pixel_intensity.png" },
-  { n: "5", title: "Image dimensions", desc: "Width vs height prior to resize.", src: "/static/eda_plots/05_image_dimension.png" },
-  { n: "6", title: "Channel heatmaps", desc: "Mean channel activations by class.", src: "/static/eda_plots/06_color_channel_hm.png" },
-  { n: "7", title: "Augmentation showcase", desc: "Before / after augmentation.", src: "/static/eda_plots/07_data_aug_showcase.png" },
-  { n: "8", title: "Feature correlation", desc: "Correlation of hand-crafted image statistics.", src: "/static/eda_plots/08_corr_heatmap.png" },
+  { n: "1", title: "Class Distribution – Bar Chart", desc: "Image counts per class with share annotations.", src: "/static/eda_plots/01_class_dist_bar.png" },
+  { n: "2", title: "Class Distribution – Pie Chart", desc: "Class proportions.", src: "/static/eda_plots/02_class_dist_pie.png" },
+  { n: "3", title: "Sample Image Grid", desc: "Representative tiles per class.", src: "/static/eda_plots/03_sample_image_grid.png" },
+  { n: "4", title: "Pixel Intensity Distribution", desc: "RGB histograms by class.", src: "/static/eda_plots/04_pixel_intensity.png" },
+  { n: "5", title: "Image Dimension Analysis", desc: "Width vs height prior to resize.", src: "/static/eda_plots/05_image_dimension.png" },
+  { n: "6", title: "Color Channel Heatmaps", desc: "Mean channel activations by class.", src: "/static/eda_plots/06_color_channel_hm.png" },
+  { n: "7", title: "Data Augmentation Showcase", desc: "Before / after augmentation.", src: "/static/eda_plots/07_data_aug_showcase.png" },
+  { n: "8", title: "Feature Correlation Heatmap", desc: "Correlation of extracted image features.", src: "/static/eda_plots/08_corr_heatmap.png" },
+  { n: "9", title: "Per-Class Mean Pixel Heatmap", desc: "Averaged pixel intensities per diagnostic class.", src: "/static/eda_plots/09_class_mean_heatmap.png" },
+  { n: "10", title: "Model Confusion Matrix", desc: "Validation set performance breakdown.", src: "/static/train_plots/10_confusion_matrix.png" },
 ] as const;
 
 const sectionTitles: Record<Section, string> = {

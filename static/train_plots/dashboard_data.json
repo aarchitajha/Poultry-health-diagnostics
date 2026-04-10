@@ -1,1 +1,1 @@
-{"classes": ["pcrcocci", "pcrhealthy", "pcrncd", "pcrsalmo"], "counts": [40, 32, 21, 35], "accuracy": 0.921875}
+{"classes": ["pcrcocci", "pcrhealthy", "pcrncd", "pcrsalmo"], "counts": [38, 30, 22, 38], "accuracy": 0.9140625}

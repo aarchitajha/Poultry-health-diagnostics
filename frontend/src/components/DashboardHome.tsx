@@ -142,8 +142,8 @@ function MiniTrend({ data, dataKey, color }: { data: TrainingRow[]; dataKey: "va
   const chartData = slice.map((r) => ({ e: r.epoch, v: dataKey === "val_accuracy" ? r.val_accuracy : r.val_loss }));
   if (chartData.length === 0) return <div className="h-14 text-xs text-slate-400">No training log</div>;
   return (
-    <div className="h-14 w-full">
-      <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
+    <div className="h-14 w-full min-w-0 min-h-0">
+      <ResponsiveContainer width="100%" height={56} minWidth={0} minHeight={0} debounce={50}>
         <AreaChart data={chartData} margin={{ top: 2, right: 2, left: -20, bottom: 0 }}>
           <defs>
             <linearGradient id={`g-${dataKey}`} x1="0" y1="0" x2="0" y2="1">
@@ -561,14 +561,14 @@ export function DashboardHome({ training, metrics, dash }: Props) {
         </div>
         <p className="mb-4 text-xs text-slate-500">From `dashboard_data.json`.</p>
         <motion.div
-          className="h-56 rounded-xl border border-slate-200/90 bg-white p-3"
+          className="h-56 rounded-xl border border-slate-200/90 bg-white p-3 min-w-0 min-h-0"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
         >
           {distData.length ? (
-            <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
+            <ResponsiveContainer width="100%" height={224} minWidth={0} minHeight={0} debounce={50}>
               <BarChart data={distData} margin={{ top: 8, right: 8, left: 4, bottom: 28 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                 <XAxis dataKey="name" tick={{ fontSize: 10 }} interval={0} angle={-18} textAnchor="end" height={48} />

@@ -16,6 +16,15 @@ except ImportWarning:
     model = None
 
 app = Flask(__name__)
+
+@app.route('/static/eda_plots/<path:filename>')
+def serve_eda_plots(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static', 'eda_plots'), filename)
+
+@app.route('/static/train_plots/<path:filename>')
+def serve_train_plots(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static', 'train_plots'), filename)
+
 CLASSES = ['Coccidiosis', 'Healthy', 'Newcastle', 'Salmonella']
 
 def get_gradcam(img_array, model, last_conv_layer_name, pred_index=None):
@@ -80,6 +89,54 @@ def api_training_log():
             except (KeyError, TypeError, ValueError):
                 continue
     return jsonify(rows)
+    
+@app.route('/api/eda-plots')
+def api_eda_plots():
+    titles = {
+        "01_class_dist_bar.png": "Class Distribution – Bar Chart",
+        "02_class_dist_pie.png": "Class Distribution – Pie Chart",
+        "03_sample_image_grid.png": "Sample Image Grid",
+        "04_pixel_intensity.png": "Pixel Intensity Distribution",
+        "05_image_dimension.png": "Image Dimension Analysis",
+        "06_color_channel_hm.png": "Color Channel Heatmaps",
+        "07_data_aug_showcase.png": "Data Augmentation Showcase",
+        "08_corr_heatmap.png": "Feature Correlation Heatmap",
+        "09_class_mean_heatmap.png": "Per-Class Mean Pixel Heatmap",
+        "10_confusion_matrix.png": "Model Confusion Matrix (Validation)",
+        "09_10_train_curves.png": "Training & Validation Metrics",
+        "11_lr_schedule.png": "Learning Rate Schedule",
+        "12_conf_matrix.png": "Normalized Confusion Matrix (Test)",
+        "13_roc_curves.png": "ROC / AUC Curves",
+        "14_pr_curves.png": "Precision-Recall Curves",
+        "15_gradcam_montage.png": "Grad-CAM Explainability"
+    }
+    
+    plots = []
+    sources = [
+        ("static/eda_plots", "/static/eda_plots"),
+        ("static/train_plots", "/static/train_plots")
+    ]
+    
+    for folder, url_prefix in sources:
+        if os.path.exists(folder):
+            for f in sorted(os.listdir(folder)):
+                if f.lower().endswith(('.png', '.jpg', '.jpeg')):
+                    plots.append({
+                        "filename": f,
+                        "title": titles.get(f, f.replace('_', ' ').replace('.png', '').title()),
+                        "src": f"{url_prefix}/{f}"
+                    })
+    
+    # Sort by numeric prefix
+    def get_sort_key(p):
+        prefix = p['filename'].split('_')[0]
+        try:
+            return int(prefix)
+        except ValueError:
+            return 999
+
+    plots.sort(key=get_sort_key)
+    return jsonify(plots)
 
 @app.route('/predict', methods=['POST'])
 def predict():

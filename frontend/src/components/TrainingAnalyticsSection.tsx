@@ -89,9 +89,9 @@ export function TrainingAnalyticsSection({ metrics, dash }: { metrics: MetricsSu
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold">Dataset distribution (eval sample)</CardTitle>
           </CardHeader>
-          <CardContent className="h-64">
+          <CardContent className="h-64 min-w-0 min-h-0">
             {donutData.length ? (
-              <ResponsiveContainer width="100%" height="100%" minWidth={1} minHeight={1}>
+              <ResponsiveContainer width="100%" height={256} minWidth={0} minHeight={0} debounce={50}>
                 <PieChart>
                   <Pie
                     data={donutData}
